@@ -69,7 +69,7 @@ const Navigation = () => {
       label: "Requisición",
       icon: "pi pi-fw pi-directions",
       command: () => {
-        window.location.href = '/requision';
+        window.location.href = '/requisicion';
       },
     },
     {
@@ -117,13 +117,6 @@ const Navigation = () => {
         window.location.href = '/kardex';
       }
     },
-      {
-        label: "Detalle kardex",
-        icon: "pi pi-fw pi-shopping-cart",
-        command: () => {
-          window.location.href = '/detalleKardex/:id';
-        },
-      },
   ]
   
   const navListAdmin = [
@@ -167,21 +160,28 @@ const Navigation = () => {
           }
         },
         {
-          label: "Presentación", 
-          icon: "pi pi-fw pi-sitemap",
+          label: "Pedidos", 
+          icon: "pi pi-fw pi-plus",
           command: () => {
-            window.location.href = '/presentacion';
+            window.location.href = '/pedido';
           }
         },
         {
-          label: "Servicios", 
-          icon: "pi pi-fw pi-sort",
+          label: "Requisición", 
+          icon: "pi pi-fw pi-plus-circle",
           command: () => {
-            window.location.href = '/servicios';
+            window.location.href = '/requisicion';
           }
         },
         {
           separator: true,
+        },
+        {
+          label: "Kardex", 
+          icon: "pi pi-fw pi-spinner",
+          command: () => {
+            window.location.href = '/kardex';
+          }
         },
         {
           label: "Solicitantes", 
@@ -198,27 +198,20 @@ const Navigation = () => {
           }
         },
         {
-          label: "Kardex", 
-          icon: "pi pi-fw pi-spinner",
-          command: () => {
-            window.location.href = '/kardex';
-          }
-        },
-        {
           separator: true,
         },
         {
-          label: "Pedidos", 
-          icon: "pi pi-fw pi-plus",
+          label: "Presentación", 
+          icon: "pi pi-fw pi-sitemap",
           command: () => {
-            window.location.href = '/pedido';
+            window.location.href = '/presentacion';
           }
         },
         {
-          label: "Requisición", 
-          icon: "pi pi-fw pi-plus-circle",
+          label: "Servicios", 
+          icon: "pi pi-fw pi-sort",
           command: () => {
-            window.location.href = '/requisicion';
+            window.location.href = '/servicios';
           }
         },
         {
@@ -255,14 +248,7 @@ const Navigation = () => {
         },
       },
       {
-        label: "Requisión", 
-        icon: "pi pi-fw pi-home",
-        command: () => {
-          window.location.href = '/requisicion';
-        }
-      },
-      {
-        label: "Requisicion",
+        label: "Requisición",
         icon: "pi pi-fw pi-home",
         command: () => {
           window.location.href = '/requisicion';
