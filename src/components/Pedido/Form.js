@@ -178,7 +178,7 @@ const Form =(props) =>{
                         value={pedidoData.justificacion_Observacion}
                         onChange={(e)=>updateField(e.target.value, "justificacion_Observacion")}
                     />
-                    <label>Justificación o observación</label>
+                    <label>Justificación u observación</label>
                 </div><br />
                 <div className="p-float-label">
                         <Dropdown value={pedidoData.estado} options={estados} onChange={(e) => updateField(e.target.value, "estado")}/>
