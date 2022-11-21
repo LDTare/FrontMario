@@ -14,17 +14,11 @@ const Profile = () => {
       las 
       página del sistema.`
     }else if(currentUser.rol === "Despachador"){
-      return `Recuerda de que tienes acceso a las 
-      página
-      determinadas en tu cargo.`
+      return `Recuerda de que tienes acceso a las página determinadas a tu cargo.`
     }else if(currentUser.rol === "Kardex"){
-      return `Recuerda de que tienes acceso a las 
-      página
-      determinadas en tu cargo, o sea al Kardex.`
+      return `Recuerda de que tienes acceso a las página determinadas a tu cargo, o sea al Kardex.`
     }else if(currentUser.rol === "Usuario"){
-      return `Recuerda de que tienes acceso a la 
-      página
-      para pedir un medicamento.`
+      return `Recuerda de que tienes acceso a la página para pedir un medicamento.`
     }else if(!currentUser){
       return null;
     }
@@ -35,10 +29,10 @@ const Profile = () => {
     <div className="flex justify-content-center">
       <div className="card">
         <h3>
-        ¡Bienvenido! <strong>{currentUser.nombre}</strong>!
+        ¡Bienvenido <strong>{currentUser.nombre}</strong>!
         </h3>
       <p>
-        !Es una placer tenerlo {currentUser.rol}¡Tenemos mucho que hacer el dia de hoy!
+        Es un placer tenerte aquí {currentUser.rol}, tenemos mucho que hacer el dia de hoy.
       </p>
       <p>
         {text}
