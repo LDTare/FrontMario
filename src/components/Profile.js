@@ -12,13 +12,13 @@ const Profile = () => {
     if(currentUser.rol === "Administrador"){
       return `Recuerda de que tienes acceso a todas
       las 
-      página del sistema.`
+      páginas del sistema.`
     }else if(currentUser.rol === "Despachador"){
-      return `Recuerda de que tienes acceso a las páginas determinadas a tu cargo.`
+      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo.`
     }else if(currentUser.rol === "Kardex"){
-      return `Recuerda de que tienes acceso a las páginas determinadas a tu cargo, o sea al Kardex.`
+      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo, o sea al Kardex.`
     }else if(currentUser.rol === "Usuario"){
-      return `Recuerda de que tienes acceso a la páginas para pedir un medicamento.`
+      return `Recuerda de que tienes acceso a todas las páginas para pedir un medicamento.`
     }else if(!currentUser){
       return null;
     }
