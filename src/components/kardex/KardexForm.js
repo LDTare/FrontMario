@@ -108,7 +108,8 @@ const KardexForm =(props) =>{
                 onClick={saveKardex}/>
             <Button label="Ingresar detalle" icon="pi pi-angle-double-right" 
                 className="p-button-rounded mb-3" visible={isVisibleButton} onClick={linkDeKardex}/>
-            <Button label="Reporte" className="p-button-rounded" visible={isVisibleButton} onClick={linkDeReporte}/>
+            <Button label="Ver reporte" icon="pi pi-angle-double-right" 
+                className="p-button-rounded mb-3" visible={isVisibleButton} onClick={linkDeReporte}/>
         </div>
     );
 
