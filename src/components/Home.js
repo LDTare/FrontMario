@@ -1,13 +1,7 @@
 import React from "react";
-import hospi1 from "../images/hospi1.jpg";
-import hospi4 from "../images/hospi4.jpg";
 import hospi5 from "../images/hospi5.jpg";
-import hospi6 from "../images/hospi6.jpg";
-import hospi7 from "../images/hospi7.jpg";
-import hospi8 from "../images/hospi8.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
-import hospi3 from '../images/hospi3.jpg';
 
 
 const Home = () => {
@@ -26,65 +20,13 @@ const Home = () => {
           mejorar la vida de quienes necesiten de los servicios médicos.
         </p>
       </div>
-      <div  className="about-desc">
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi1}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi3}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi4}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi5}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi6}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi7}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-300"
-              src={hospi8}
-              width={510}
-              height={370}
-              alt="Second slide" />
-          </Carousel.Item>
-        </Carousel>
+      <div className="about-desc">
+        <img
+          className="d-block w-300"
+          src={hospi6}
+          width={510}
+          height={370}
+          alt="Second slide" />
       </div>
     </div><div>
         <footer>

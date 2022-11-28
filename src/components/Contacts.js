@@ -91,7 +91,7 @@ const Contact = () => {
                             <Field name="mensaje" render={({ input, meta }) => (
                                 <div className="field">
                                     <span className="p-float-label p-input-icon-right">
-                                        <InputTextarea rows={5} cols={30} autoResize placeholder='Asunto'  id="mensaje" {...input} autoFocus className={classNames({ 'p-invalid': isFormFieldValid(meta) })} />
+                                        <InputTextarea rows={5} cols={30} autoResize placeholder='Cuerpo'  id="mensaje" {...input} autoFocus className={classNames({ 'p-invalid': isFormFieldValid(meta) })} />
                                         <label htmlFor="mensaje" className={classNames({ 'p-error': isFormFieldValid(meta) })}>Mensaje</label>
                                     </span>
                                     {getFormErrorMessage(meta)}
