@@ -65,7 +65,6 @@ const FormUsuario = (props) => {
             },() => {
                 console.log("Sin exito");
             })
-            window.location.reload();
         }
         retornar();
     };
