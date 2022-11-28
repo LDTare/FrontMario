@@ -7,167 +7,139 @@ import { logout } from "../../actions/auth";
 import { clearMessage } from "../../actions/message";
 import logo from "../../images/fondo2.ico";
 const Navigation = () => {
-    const dispatch = useDispatch();
-    const { user: currentUser } = useSelector((state) => state.auth);
-    const logOut = useCallback(() => {
-        dispatch(logout());
-      }, [dispatch]);
-    let location = useLocation();
-    useEffect(() => {
-      if (["/login", "/register"].includes(location.pathname)) {
-        dispatch(clearMessage()); // clear message when changing location
-      }
-    }, [dispatch, location]);
-    useEffect(() => {
-      if(currentUser){
-  
-      }else {
-  
-      }
-    }, [currentUser]);
-    /* Items */
-    const navlistW = [
-      {
-        label: "Inicio", 
-        icon: "pi pi-fw pi-home",
-        command: () => {
-          window.location.href = '/';
-        },
-      },
-      {
-        label: "Contáctanos", 
-        icon: "pi pi-fw pi-send",
-        command: () => {
-          window.location.href = '/contact';
-        },
-      }
-  ];
-  
-  const navlistDespachador = [
+  const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+  let location = useLocation();
+  useEffect(() => {
+    if (["/login", "/register"].includes(location.pathname)) {
+      dispatch(clearMessage()); // clear message when changing location
+    }
+  }, [dispatch, location]);
+  useEffect(() => {
+    if (currentUser) {
+
+    } else {
+
+    }
+  }, [currentUser]);
+  /* Items */
+  const navlistW = [
     {
-      label: "Inicio", 
+      label: "Inicio",
       icon: "pi pi-fw pi-home",
       command: () => {
         window.location.href = '/';
+      },
+    }
+  ];
+
+  const navlistDespachador = [
+    {
+      label: "Inicio",
+      icon: "pi pi-fw pi-home",
+      command: () => {
+        window.location.href = '/profile';
       }
     },
     {
       label: "Lote",
-      icon: "pi pi-fw pi-car",
+      icon: "pi pi-fw pi-shopping-cart",
       command: () => {
         window.location.href = '/lote';
       },
     },
     {
       label: "Presentación",
-      icon: "pi pi-fw pi-briefcase",
+      icon: "pi pi-fw pi-sitemap",
       command: () => {
         window.location.href = '/presentacion';
       },
     },
     {
       label: "Requisición",
-      icon: "pi pi-fw pi-directions",
+      icon: "pi pi-fw pi-plus-circle",
       command: () => {
         window.location.href = '/requisicion';
       },
     },
     {
       label: "Servicio",
-      icon: "pi pi-fw pi-envelope",
+      icon: "pi pi-fw pi-sort",
       command: () => {
         window.location.href = '/servicios';
       },
     },
     {
       label: "Pedido",
-      icon: "pi pi-fw pi-mobile",
+      icon: "pi pi-fw pi-plus",
       command: () => {
         window.location.href = '/pedido';
       },
-    },
-    {
-      label: "Contáctanos", 
-      icon: "pi pi-fw pi-send",
-      command: () => {
-        window.location.href = '/contact';
-      },
     }
   ];
-  
+
   const navListKardex = [
     {
-      label: "Inicio", 
+      label: "Inicio",
       icon: "pi pi-fw pi-home",
       command: () => {
-        window.location.href = '/';
+        window.location.href = '/profile';
       }
-    },
-    {
-      label: "Contáctanos", 
-      icon: "pi pi-fw pi-send",
-      command: () => {
-        window.location.href = '/contact';
-      }, 
     },
     {
       label: "Kardex",
-      icon: "pi pi-fw pi-shopping-bag",
+      icon: "pi pi-fw pi-spinner",
       command: () => {
         window.location.href = '/kardex';
       }
-    },
+    }
   ]
-  
+
   const navListAdmin = [
     {
-      label: "Inicio", 
+      label: "Inicio",
       icon: "pi pi-fw pi-home",
       command: () => {
-        window.location.href = '/';
+        window.location.href = '/profile';
       }
     },
     {
-      label: "Auditoria", 
+      label: "Auditoria",
       icon: "pi pi-fw pi-bolt",
       command: () => {
-        window.location.href = '/auditoria';
+        window.location.href = '/auditoría';
       }
     },
     {
-      label: "Contáctanos", 
-      icon: "pi pi-fw pi-send",
-      command: () => {
-        window.location.href = '/contact';
-      },
-    },
-    {
-      label: "Registros", 
+      label: "Registros",
       icon: "pi pi-fw pi-compass",
-      items:[
+      items: [
         {
-          label: "Productos", 
+          label: "Productos",
           icon: "pi pi-fw pi-shopping-bag",
           command: () => {
             window.location.href = '/producto';
           }
         },
         {
-          label: "Lote", 
+          label: "Lote",
           icon: "pi pi-fw pi-shopping-cart",
           command: () => {
             window.location.href = '/lote';
           }
         },
         {
-          label: "Pedidos", 
+          label: "Pedidos",
           icon: "pi pi-fw pi-plus",
           command: () => {
             window.location.href = '/pedido';
           }
         },
         {
-          label: "Requisición", 
+          label: "Requisición",
           icon: "pi pi-fw pi-plus-circle",
           command: () => {
             window.location.href = '/requisicion';
@@ -177,21 +149,21 @@ const Navigation = () => {
           separator: true,
         },
         {
-          label: "Kardex", 
+          label: "Kardex",
           icon: "pi pi-fw pi-spinner",
           command: () => {
             window.location.href = '/kardex';
           }
         },
         {
-          label: "Solicitantes", 
+          label: "Solicitantes",
           icon: "pi pi-fw pi-share-alt",
           command: () => {
             window.location.href = '/solicitantes';
           }
         },
         {
-          label: "Ejecutores", 
+          label: "Ejecutores",
           icon: "pi pi-fw pi-search",
           command: () => {
             window.location.href = '/ejecutores';
@@ -201,21 +173,21 @@ const Navigation = () => {
           separator: true,
         },
         {
-          label: "Presentación", 
+          label: "Presentación",
           icon: "pi pi-fw pi-sitemap",
           command: () => {
             window.location.href = '/presentacion';
           }
         },
         {
-          label: "Servicios", 
+          label: "Servicios",
           icon: "pi pi-fw pi-sort",
           command: () => {
             window.location.href = '/servicios';
           }
         },
         {
-          label: "Remitentes", 
+          label: "Remitentes",
           icon: "pi pi-fw pi-plus-circle",
           command: () => {
             window.location.href = '/remitentes';
@@ -224,109 +196,124 @@ const Navigation = () => {
       ],
     },
     {
-      label: "Lista de usuarios", 
+      label: "Lista de usuarios",
       icon: "pi pi-fw pi-users",
       command: () => {
         window.location.href = '/usuarios';
       }
     }
   ]
-  
+
   const navListUsuario = [
-      {
-        label: "Inicio", 
-        icon: "pi pi-fw pi-home",
-        command: () => {
-          window.location.href = '/';
-        }
-      },
-      {
-        label: "Contáctanos", 
-        icon: "pi pi-fw pi-send",
-        command: () => {
-          window.location.href = '/contact';
-        },
-      },
-      {
-        label: "Requisición",
-        icon: "pi pi-fw pi-home",
-        command: () => {
-          window.location.href = '/requisicion';
-        }
-      },
+    {
+      label: "Inicio",
+      icon: "pi pi-fw pi-home",
+      command: () => {
+        window.location.href = '/profile';
+      }
+    },
+    {
+      label: "Requisición",
+      icon: "pi pi-fw pi-plus-circle",
+      command: () => {
+        window.location.href = '/requisicion';
+      }
+    }
   ]
-    /*Items 2 */
-    const items = [
-      {
-        label: "Inicio de sesión", 
-        icon: "pi pi-fw pi-user",
-        command: () => {
-          window.location.href = '/login';
-        }
-      },
-      {
-        label: "Registrarse", 
-        icon: "pi pi-fw pi-sign-in",
-        command: () => {
-          window.location.href = '/register';
-        }
+  /*Items 2 */
+  const items = [
+    {
+      label: "Inicio de sesión",
+      icon: "pi pi-fw pi-user",
+      command: () => {
+        window.location.href = '/login';
       }
-    ]
-    const items2 = [
-      {
-        label: "Perfil", 
-        icon: "pi pi-fw pi-user",
-        command: () => {
-          window.location.href = '/profile';
-        }
-      },
-      {
-        label: "Editar perfil", 
-        icon: "pi pi-fw pi-users",
-        command: () => {
-          window.location.href = '/edituser';
-        }
-      },
-      {
-        label: "Salir", 
-        icon: "pi pi-fw pi-sign-out",
-        command: () => {
-          window.location.href = '/profile';
-          window.onclick = logOut();
-        }
+    },
+    {
+      label: "Registrarse",
+      icon: "pi pi-fw pi-sign-in",
+      command: () => {
+        window.location.href = '/register';
       }
-    ]
-
-    
-    function isLogin(currentUser, items, items2){
-      if(!currentUser){
-        return <SplitButton className="mr-2 mb-2 p-button-rounded p-button-info" label="Acciones" model={items} />;
-      }else if(currentUser)
-      {
-        return <SplitButton className="mr-2 mb-2 p-button-rounded p-button-success" label={currentUser.nombre}  model={items2} />;
+    },
+    {
+      label: "Soporte técnico",
+      icon: "pi pi-fw pi-send",
+      command: () => {
+        window.location.href = '/contact';
+      },
+    }
+  ]
+  const items2 = [
+    {
+      label: "Perfil",
+      icon: "pi pi-fw pi-user",
+      command: () => {
+        window.location.href = '/profile';
+      }
+    },
+    {
+      label: "Editar perfil",
+      icon: "pi pi-fw pi-users",
+      command: () => {
+        window.location.href = '/edituser';
+      }
+    },
+    {
+      label: "Soporte técnico",
+      icon: "pi pi-fw pi-send",
+      command: () => {
+        window.location.href = '/contact';
+      },
+    },
+    {
+      label: "Salir",
+      icon: "pi pi-fw pi-sign-out",
+      command: () => {
+        window.location.href = '/profile';
+        window.onclick = logOut();
       }
     }
+  ]
 
-    function isRol(currentUser, navList1, navList2, navList3, navList4, navList5){
-      if(!currentUser){
-        return navList1;
-      }else if(currentUser.rol === "Administrador"){
-        return navList2;
-      }else if(currentUser.rol === "Despachador"){
-        return navList3;
-      }else if(currentUser.rol === "Kardex"){
-        return navList4;
-      }else if(currentUser.rol === "Usuario"){
-        return navList5;
-      }
+  if (!currentUser) {
+
+  } else if (currentUser) {
+    if (currentUser.estado === 0) {
+      logOut();
+    } else {
+
     }
-    const end = isLogin(currentUser, items, items2);
-    const start = <img alt="logo" src={logo} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="mr-2"></img>;
-    return (
-        <header>
-        <Menubar model={isRol(currentUser, navlistW, navListAdmin, navlistDespachador, navListKardex, navListUsuario)} start={start} end={end} />
-        </header>
-    );
+  }
+
+  function isLogin(currentUser, items, items2) {
+    if (!currentUser) {
+      return <SplitButton className="mr-2 mb-2 p-button-rounded p-button-info" label="Acciones" model={items} />;
+    } else if (currentUser) {
+      return <SplitButton className="mr-2 mb-2 p-button-rounded p-button-success" label={currentUser.nombre} model={items2} />;
+    }
+  }
+
+  function isRol(currentUser, navList1, navList2, navList3, navList4, navList5) {
+    if (!currentUser) {
+      return navList1;
+    } else if (currentUser.rol === "Administrador") {
+      return navList2;
+    } else if (currentUser.rol === "Despachador") {
+      return navList3;
+    } else if (currentUser.rol === "Kardex") {
+      return navList4;
+    } else if (currentUser.rol === "Usuario") {
+      return navList5;
+    }
+  }
+  const end = isLogin(currentUser, items, items2);
+  const start = <img alt="logo" src={logo} onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="mr-2"></img>;
+  return (
+    <header>
+      <Menubar model={isRol(currentUser, navlistW, navListAdmin, navlistDespachador, navListKardex, navListUsuario)} start={start} end={end} />
+    </header>
+  );
 }
 
 export default Navigation;

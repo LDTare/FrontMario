@@ -35,7 +35,7 @@ const ReactFinalFormDemo = () => {
             errors.password = 'Contraseña requerida.';
         }
 
-        if (!data.nroCelular){
+        if (!data.nroCelular) {
             errors.nroCelular = "Numero de celular requerido."
         }
 
@@ -47,25 +47,25 @@ const ReactFinalFormDemo = () => {
         const email = {
             message: `Es un placer anunciarle que el 
             dia de hoy se creo un nuevo usuario, 
-            con el email ${data.email}, para que observer
+            con el email ${data.email}, para que observe
             si el usuario necesita tener un rol.`
         }
         emailjs.send(ApiKey.SERVICE_ID, ApiKey.TEMPLATE_ID, email, ApiKey.USER_ID)
-        .then(() => {
-            console.log("Enviado con exito");
-        },() => {
-            console.log("Error");
-        });
-        dispatch(register(4, data.nombre, data.email, data.password, data.nroCelular, data.direccion, 1))
-        .then(() => {
-            setShowMessage(true);
-            form.restart();
-            //navigate("/login");
-            //window.location.reload();
-        })
-        .catch(() => {
-            form.restart();
-        });
+            .then(() => {
+                console.log("Enviado con exito");
+            }, () => {
+                console.log("Error");
+            });
+        dispatch(register(4, data.nombre, data.email, data.password, data.nroCelular, data.direccion, 0))
+            .then(() => {
+                setShowMessage(true);
+                form.restart();
+                //navigate("/login");
+                //window.location.reload();
+            })
+            .catch(() => {
+                form.restart();
+            });
     };
 
     const isFormFieldValid = (meta) => !!(meta.touched && meta.error);
@@ -73,7 +73,7 @@ const ReactFinalFormDemo = () => {
         return isFormFieldValid(meta) && <small className="p-error">{meta.error}</small>;
     };
 
-    const dialogFooter = <div className="flex justify-content-center"><Button label="OK" className="p-button-text" autoFocus onClick={() => setShowMessage(false) } /></div>;
+    const dialogFooter = <div className="flex justify-content-center"><Button label="OK" className="p-button-text" autoFocus onClick={() => setShowMessage(false)} /></div>;
     const passwordHeader = <h6>Colocar una contraseña.</h6>;
     const passwordFooter = (
         <React.Fragment>
@@ -96,23 +96,23 @@ const ReactFinalFormDemo = () => {
                     <i className="pi pi-check-circle" style={{ fontSize: '5rem', color: 'var(--green-500)' }}></i>
                     <h5>¡Registro hecho!</h5>
                     <p style={{ lineHeight: 1.5, textIndent: '1rem' }}>
-                        ¿Que tal señor@ <b>{formData.name}</b>? ; Ya puede iniciar en el sistema como un usuario.<b>{formData.email}</b>.
+                        ¿Que tal señor/a <b>{formData.name}</b>? ; Espere un tiempo para que le activen su cuenta. Después de un lapso de 2 horas, puede iniciar sesión con su email: <b>{formData.email}, y la contraseña que colocó.</b>
                     </p>
                 </div>
             </Dialog>
 
 
             <div className="flex justify-content-center">
-                    <div className='card card-container'>
+                <div className='card card-container'>
                     <h5 className="text-center">Registrarse</h5>
-                    <Form onSubmit={onSubmit} initialValues={{ nombre: '', email: '', password: '', nroCelular: '', direccion: ''}} validate={validate} render={({ handleSubmit }) => (
+                    <Form onSubmit={onSubmit} initialValues={{ nombre: '', email: '', password: '', nroCelular: '', direccion: '' }} validate={validate} render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit} className="p-fluid">
 
                             <Field name="nombre" render={({ input, meta }) => (
                                 <div className="field">
                                     <span className="p-float-label p-input-icon-right">
-                                    <i className="pi pi-user" />
-                                        <InputText placeholder='Nombre'  id="nombre" {...input} autoFocus className={classNames({ 'p-invalid': isFormFieldValid(meta) })} />
+                                        <i className="pi pi-user" />
+                                        <InputText placeholder='Nombre' id="nombre" {...input} autoFocus className={classNames({ 'p-invalid': isFormFieldValid(meta) })} />
                                         <label htmlFor="nombre" className={classNames({ 'p-error': isFormFieldValid(meta) })}>Nombre*</label>
                                     </span>
                                     {getFormErrorMessage(meta)}
@@ -123,7 +123,7 @@ const ReactFinalFormDemo = () => {
                                 <div className="field">
                                     <span className="p-float-label p-input-icon-right">
                                         <i className="pi pi-envelope" />
-                                        <InputText id="email" {...input} className={classNames({ 'p-invalid': isFormFieldValid(meta) })} placeholder='example@gmail.com'/>
+                                        <InputText id="email" {...input} className={classNames({ 'p-invalid': isFormFieldValid(meta) })} placeholder='example@gmail.com' />
                                         <label htmlFor="email" className={classNames({ 'p-error': isFormFieldValid(meta) })}>Correo electrónico*</label>
                                     </span>
                                     {getFormErrorMessage(meta)}
@@ -142,7 +142,7 @@ const ReactFinalFormDemo = () => {
                             <Field name="nroCelular" render={({ input, meta }) => (
                                 <div className="field">
                                     <span className="p-float-label p-input-icon-right">
-                                    <i className="pi pi-id-card" />
+                                        <i className="pi pi-id-card" />
                                         <InputText id="nroCelular" placeholder='+502 XXXX-XXXX' {...input} className={classNames({ 'p-invalid': isFormFieldValid(meta) })} />
                                         <label htmlFor="nroCelular" className={classNames({ 'p-error': isFormFieldValid(meta) })}>Contacto*</label>
                                     </span>
@@ -153,15 +153,15 @@ const ReactFinalFormDemo = () => {
                             <Field name="direccion" render={({ input, meta }) => (
                                 <div className="field">
                                     <span className="p-float-label p-input-icon-right">
-                                    <i className="pi pi-send" />
-                                        <InputTextarea id="direccion" {...input} className={classNames({ 'p-invalid': isFormFieldValid(meta) })} rows={5} cols={30} autoResize/>
+                                        <i className="pi pi-send" />
+                                        <InputTextarea id="direccion" {...input} className={classNames({ 'p-invalid': isFormFieldValid(meta) })} rows={5} cols={30} autoResize />
                                         <label htmlFor="direccion" className={classNames({ 'p-error': isFormFieldValid(meta) })}>Dirección*</label>
                                     </span>
                                     {getFormErrorMessage(meta)}
                                 </div>
                             )} />
 
-                            <Button type="submit" label="Ingresar" className="mt-2" />
+                            <Button type="submit" label="Registrarse" className="mt-2" />
                         </form>
                     )} />
                 </div>

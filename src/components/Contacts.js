@@ -55,7 +55,8 @@ const Contact = () => {
             </Dialog>
             <div className="flex justify-content-center">
                     <div className='card card-container'>
-                    <h5 className="text-center">Contáctanos</h5>
+                    <h5 className="text-center">Soporte técnico</h5>
+                    <label>En este espacio puede realizarse cualquier duda sobre el sistema directamente al administrador.</label>
                     <Form onSubmit={onSubmit} initialValues={{ nombre: '', email: '', asunto: '', mensaje: ''}} validate={validate} render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit} className="p-fluid">
                             <Field name="nombre" render={({ input, meta }) => (

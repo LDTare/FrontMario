@@ -25,7 +25,7 @@ const Login = () => {
 
 
       if (!data.email) {
-          errors.email = '¡El correo electrónico es requerido!!';
+          errors.email = '¡El correo electrónico es requerido!';
       }
       else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
           errors.email = '¡Correo electrónico no valido! Ejemplo: example@email.com';

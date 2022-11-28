@@ -107,7 +107,7 @@ const PedidoList = () =>{
                 paginator className="p-datatable-customers" showGridlines rows={10}
                 dataKey="id" filters={filters1} filterDisplay="menu"
                 globalFilterFields={['nombreUE', 'nombre', 'correlativoUE', 'telefonoExt', dateSolicitud, 'justificacion_Observacion', 'montoTotal', 'estado']} 
-                header={header1} emptyMessage="No se encontraron lotes."
+                header={header1} emptyMessage="No se encontraron pedidos."
                 >
                 <Column field="id" header="No." sortable/>
                 <Column field="nombreUE" header="Ejecutor" sortable/>

@@ -62,7 +62,7 @@ const AuditoriaList = () =>{
                 doc.text("Fecha: "+day+" / "+months+" / "+year, 240,20);
                 doc.setFontSize(16);
                 doc.setFont("Helvetica", "bold");
-                doc.text("Reporte de auditoria", 120,32);
+                doc.text("Reporte de auditoría", 120,32);
                 const img1 = new Image();
                 img1.src = logo;
                 doc.addImage(img1, 'JPEG', 128, 4, 40, 20);

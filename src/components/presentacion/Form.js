@@ -106,7 +106,7 @@ const Form =(props) =>{
             modal={true}
             style={{maxHeight: "800px", width:"420px", overflow:"auto"}}
             contentStyle={{overflow:"visible"}}
-            header = "Detalles de presentacion"
+            header = "Detalles de presentación"
             onHide={()=>clearSelected()}
             footer={dialogFooter}
         >

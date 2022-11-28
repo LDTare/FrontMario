@@ -50,7 +50,7 @@ const update = (
   nroCelular, 
   direccion, 
   estado) => {
-  return axios.put(API_URL + `${id}`, {
+  return axios.put(API_URL + `update/${id}`, {
     idRol, 
     nombre, 
     email, 

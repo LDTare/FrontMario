@@ -51,35 +51,212 @@ const App = () => {
       <Navigation />
       <div className="container mt-3">
         <Routes>
-          <Route index path="/" element={<Home />} />
+        <Route index path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route element={<ProtectedRoute isAllowed={!currentUser} />} >
           <Route path="/register" element={<ReactFinalFormDemo />} />
           <Route path="/login" element={<Login />} />
           </Route>
-          <Route element={<ProtectedRoute isAllowed={!!currentUser} />} >
-          <Route  path="/producto"     element={<Producto />} />
-          <Route  path="/edituser"     element={<EditUser />} />
-          <Route  path="/lote"         element={<Lote /> } />
-          <Route  path="/presentacion" element={<Presentacion /> } />
-          <Route  path="/servicios"    element={<Servicios /> } />
-          <Route  path="/auditoria"    element={<Auditoria /> } />
-          <Route  path="/solicitantes" element={<Solicitantes /> } />
-          <Route  path="/ejecutores"   element={<Ejecutores /> } />
-          <Route  path="/kardex"       element={<Kardexs /> } />
-          <Route  path="/dkardex/:idK" element={<DKardexs /> } />
-          <Route  path="/pedido"       element={<Pedido /> } />
-          <Route  path="/dpedido/:idP"  element={<DPedido /> } />
-          <Route  path="/requisicion"      element={<Requisicion />} />
-          <Route  path="/drequisicion/:idR" element={<DRequisicion />} />
-          <Route  path="/requisicionreporte/:idR" element={<ReporteRequisicion />} />
-          <Route  path="/profile" element={<Profile />} />
-          <Route  path="/usuarios" element={<Usuario />} />
-          <Route  path="/vista/:idP" element={<VistaTable />} />
-          <Route  path="/suministros/:idK" element={<VistaTableSum />} />
-          <Route path="/remitentes" element={<Remitente />} /> 
-          </Route>
+          <Route  path="/producto"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Producto />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/edituser"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser
+              }
+              >
+              <EditUser />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/lote"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <Lote />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/presentacion"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <Presentacion />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/presentacion"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <Presentacion />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/servicios"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <Servicios />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/auditoria"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Auditoria />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/solicitantes"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Solicitantes />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/ejecutores"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Ejecutores />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/kardex"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Kardex")
+              }
+              >
+              <Kardexs />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/dkardex/:idK"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Kardex")
+              }
+              >
+              <DKardexs />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/pedido"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <Pedido />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/dpedido/:idP"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador")
+              }
+              >
+              <DPedido/>
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/requisicionreporte/:idR"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Kardex")
+              }
+              >
+              <Kardexs />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/requisicion"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador" || currentUser.rol === "Usuario")
+              }
+              >
+              <Requisicion />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/drequisicion/:idR"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador" || currentUser.rol === "Usuario")
+              }
+              >
+              <DRequisicion />
+              </ProtectedRoute>
+            }
+          />
+          <Route  path="/requisicionreporte/:idR"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador" || currentUser.rol === "Usuario")
+              }
+              >
+              <ReporteRequisicion />
+              </ProtectedRoute>
+            }
+          />
+         <Route  path="/profile"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser 
+              }
+              >
+              <Profile />
+              </ProtectedRoute>
+            }
+          />
+        <Route  path="/usuarios"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Usuario />
+              </ProtectedRoute>
+            }
+        />
+        <Route  path="/vista/:idP"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <VistaTable />
+              </ProtectedRoute>
+            }
+          />
+        <Route  path="/suministros/:idK"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <VistaTableSum />
+              </ProtectedRoute>
+            }
+          />
+        <Route  path="/remitentes"     element={
+              <ProtectedRoute 
+              isAllowed={!!currentUser && currentUser.rol === "Administrador"
+              }
+              >
+              <Remitente />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </div>
     </div>
