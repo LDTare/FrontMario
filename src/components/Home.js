@@ -26,8 +26,8 @@ const Home = () => {
           mejorar la vida de quienes necesiten de los servicios médicos.
         </p>
       </div>
-      <div>
-        <Carousel className="about-desc">
+      <div  className="about-desc">
+        <Carousel>
           <Carousel.Item>
             <img
               className="d-block w-300"
