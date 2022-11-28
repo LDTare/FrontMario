@@ -27,7 +27,7 @@ const Home = () => {
         </p>
       </div>
       <div>
-        <Carousel>
+        <Carousel className="about-desc">
           <Carousel.Item>
             <img
               className="d-block w-300"

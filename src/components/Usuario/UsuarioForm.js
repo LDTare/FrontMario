@@ -51,7 +51,6 @@ const FormUsuario = (props) => {
     const saveUsuario = () => {
         if (!editUsuario) {
             createUsuario(usuarioData);
-            window.location.reload();
         } else {
             updateUsuario(usuarioData);
             const mensaje = {
@@ -66,7 +65,6 @@ const FormUsuario = (props) => {
             },() => {
                 console.log("Sin exito");
             })
-            window.location.reload();
         }
         retornar();
     };
