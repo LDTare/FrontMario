@@ -23,7 +23,7 @@ const Home = () => {
       <div className="about-desc">
         <img
           className="d-block w-300"
-          src={hospi6}
+          src={hospi5}
           width={510}
           height={370}
           alt="Second slide" />
