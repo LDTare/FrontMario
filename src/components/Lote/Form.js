@@ -178,7 +178,6 @@ const Form =(props) =>{
                     <InputNumber
                         value={loteData.precioUnitario}
                         onChange={(e)=>updateField(e.value, "precioUnitario")}
-                        mode="decimal" locale="en-US" minFractionDigits={2}
                     />
                     <label>Precio unitario*</label>
                 </div><br />
