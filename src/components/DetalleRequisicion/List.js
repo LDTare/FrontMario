@@ -1,11 +1,11 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Panel } from "primereact/panel";
 import { DataTable } from "primereact/datatable";
-import {Column} from 'primereact/column';
-import {InputText} from "primereact/inputtext";
-import {Button} from 'primereact/button';
-import { FilterMatchMode} from 'primereact/api';
+import { Column } from 'primereact/column';
+import { InputText } from "primereact/inputtext";
+import { Button } from 'primereact/button';
+import { FilterMatchMode } from 'primereact/api';
 import { Toolbar } from 'primereact/toolbar';
 import { useSelector } from "react-redux";
 import DeRequisicionForm from './Form';
@@ -13,25 +13,29 @@ import DeRequisicionFormDespachado from './FormD';
 import { DRequisicionContext } from "../../context/DRequisicionContext";
 
 
-const DeRequisicionList = () =>{
+const DeRequisicionList = () => {
     const { user: currentUser } = useSelector((state) => state.auth);
-    const {dsRequisicion, findDeRequisicion} = useContext(DRequisicionContext);
+    const { dsRequisicion, findDeRequisicion } = useContext(DRequisicionContext);
 
     const [isVisible, setIsVisible] = useState(false);
     const [isVisibleF2, setisVisibleF2] = useState(false);
 
     const { idR } = useParams();
 
-    let cont=0;
+    let cont = 0;
 
-    const numero =  () => {
+    const numero = () => {
         cont = parseInt(cont) + 1;
         return cont;
     }
 
-    function visibleForms(bool){
-        //setIsVisible(bool);
-        setisVisibleF2(bool);
+    function visibleForms(bool) {
+        console.log(currentUser.rol);
+        if (currentUser.rol === "Administrador" || currentUser.rol === "Despachador") {
+            setisVisibleF2(bool);
+        } else if (currentUser.rol === "Usuario") {
+            setIsVisible(bool);
+        }
     }
 
     const saveDRequisicion = (id) => {
@@ -42,29 +46,29 @@ const DeRequisicionList = () =>{
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button className="p-button-raised p-button-rounded mr-2 p-button-info" type="button" icon="pi pi-plus" label="Agregar detalle" 
-                onClick={()=>visibleForms(true)}/>
+                <Button className="p-button-raised p-button-rounded mr-2 p-button-info" type="button" icon="pi pi-plus" label="Agregar detalle"
+                    onClick={() => visibleForms(true)} />
             </React.Fragment>
         )
     }
 
     const navigate = useNavigate();
-    function linkKardex (){
+    function linkKardex() {
         navigate('/requisicion')
     }
-    function linkProducto (){
+    function linkProducto() {
         navigate('/lote')
     }
-    function linkReporte (){
+    function linkReporte() {
         navigate(`/requisicionreporte/${idR}`)
     }
 
     const rightToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="Regresar a requisición" icon="pi pi-angle-double-left" className="p-button-rounded mr-2" onClick={linkKardex}/>
-                <Button label="Ir a lote" icon="pi pi-angle-double-right" className="p-button-rounded p-toolbar-separator mr-2" onClick={linkProducto}/>
-                <Button label="Generar reporte" icon="pi pi-angle-double-right" className="p-button-rounded p-toolbar-separator mr-2" onClick={linkReporte}/>
+                <Button label="Regresar a requisición" icon="pi pi-angle-double-left" className="p-button-rounded mr-2" onClick={linkKardex} />
+                <Button label="Ir a lote" icon="pi pi-angle-double-right" className="p-button-rounded p-toolbar-separator mr-2" onClick={linkProducto} />
+                <Button label="Generar reporte" icon="pi pi-angle-double-right" className="p-button-rounded p-toolbar-separator mr-2" onClick={linkReporte} />
             </React.Fragment>
         )
     }
@@ -84,7 +88,7 @@ const DeRequisicionList = () =>{
     useEffect(() => {
         initFilters1();
     }, []);
-    
+
     const onGlobalFilterChange1 = (e) => {
         const value = e.target.value;
         let _filters1 = { ...filters1 };
@@ -105,38 +109,38 @@ const DeRequisicionList = () =>{
         )
     }
     const header1 = renderHeader1();
-    return(
+    return (
         <div>
-        <Toolbar className="mr-2" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
-        <Panel
-            header="Listado de detalle requisición" sortField="category" sortOrder={-1} responsiveLayout="scroll" 
-            style={{ textAlign: "justify" }}
-        >
-            <div>
-            <DataTable 
-                value={dsRequisicion.filter((p)=>p.Requisicion === parseInt(idR))}
-                responsiveLayout="scroll"
-                selectionMode="single"
-                onSelectionChange={(e) => saveDRequisicion(e.value.id)}
-                paginator className="p-datatable-customers" showGridlines rows={10}
-                dataKey="id" filters={filters1} filterDisplay="menu"
-                globalFilterFields={['Requisicion', 'Lote', 'descripcion', 'cantidad', 'cantidaDespachada', 'precioUnitario', 'precioTotal']} 
-                header={header1} emptyMessage="No se encontraron detalles de requisición."
-                >
-                <Column body={numero} header="No." sortable/>
-                <Column field="Requisicion" header="Requisición" sortable/>
-                <Column field="Producto" header="Producto" sortable/>
-                <Column field="Lote" header="Lote" sortable/>
-                <Column field="descripcion" header="Descripción" sortable/>
-                <Column field="cantidad" header="Cantidad solicitada" sortable/>
-                <Column field="cantidaDespachada" header="Cantidad despachada" sortable/>
-                <Column field="precioUnitario" header="Precio unitario" sortable/>
-                <Column field="precioTotal" header="Precio total" sortable/>
-            </DataTable>
-            </div>
-        </Panel>
-        {currentUser.Rol === 'Administrador' ? (<DeRequisicionForm idr={idR} isVisible={isVisible} setIsVisible={setIsVisible}/>):   
-        (<DeRequisicionFormDespachado idr={idR} isVisible={isVisibleF2} setIsVisible={setisVisibleF2}/>)}
+            <Toolbar className="mr-2" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+            <Panel
+                header="Listado de detalle requisición" sortField="category" sortOrder={-1} responsiveLayout="scroll"
+                style={{ textAlign: "justify" }}
+            >
+                <div>
+                    <DataTable
+                        value={dsRequisicion.filter((p) => p.Requisicion === parseInt(idR))}
+                        responsiveLayout="scroll"
+                        selectionMode="single"
+                        onSelectionChange={(e) => saveDRequisicion(e.value.id)}
+                        paginator className="p-datatable-customers" showGridlines rows={10}
+                        dataKey="id" filters={filters1} filterDisplay="menu"
+                        globalFilterFields={['Requisicion', 'Lote', 'descripcion', 'cantidad', 'cantidaDespachada', 'precioUnitario', 'precioTotal']}
+                        header={header1} emptyMessage="No se encontraron detalles de requisición."
+                    >
+                        <Column body={numero} header="No." sortable />
+                        <Column field="Requisicion" header="Requisición" sortable />
+                        <Column field="Producto" header="Producto" sortable />
+                        <Column field="Lote" header="Lote" sortable />
+                        <Column field="descripcion" header="Descripción" sortable />
+                        <Column field="cantidad" header="Cantidad solicitada" sortable />
+                        <Column field="cantidaDespachada" header="Cantidad despachada" sortable />
+                        <Column field="precioUnitario" header="Precio unitario" sortable />
+                        <Column field="precioTotal" header="Precio total" sortable />
+                    </DataTable>
+                </div>
+            </Panel>
+            <DeRequisicionForm idr={idR} isVisible={isVisible} setIsVisible={setIsVisible} />
+            <DeRequisicionFormDespachado idr={idR} isVisible={isVisibleF2} setIsVisible={setisVisibleF2} />
         </div>
     );
 }

@@ -107,10 +107,10 @@ const Navigation = () => {
       }
     },
     {
-      label: "Auditoria",
+      label: "Auditoría",
       icon: "pi pi-fw pi-bolt",
       command: () => {
-        window.location.href = '/auditoría';
+        window.location.href = '/auditoria';
       }
     },
     {
