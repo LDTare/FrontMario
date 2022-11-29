@@ -20,11 +20,12 @@ const VistaTableSum = (props) => {
         <p>
                 {kardex.map((e) => (
                     <div>
-                    <p>AREA DE SALUD<u>___Retahuleu___</u>DEPENDENCIA<u>____Hospital_______</u></p>
-                    <p>DESCRIPCION<u>___{e.descripcion}___</u>CODIGO<u>_____{e.codigo}______</u></p>
+                    <p>AREA DE SALUD<u>___Retalhuleu___</u>DEPENDENCIA<u>____Hospital_______</u></p>
+                    <p>DESCRIPCIÓN<u>___{e.descripcion}___</u>CÓDIGO<u>_____{e.codigo}______</u></p>
                     </div>
                 ))}
         </p>
+        <div>
         <Table border={2} bordered={4} hover>
             <thead>
                 <tr>
@@ -70,21 +71,38 @@ const VistaTableSum = (props) => {
                         <td>{e.FDK}</td>
                         <td>{e.IDK}</td>
                         <td>{e.Remitente}</td>
+                        <td>
+                        <tr>
                         <td>{e.EntradaC}</td>
                         <td>{e.EntradaP}</td>
+                        </tr>
+                        </td>
                         <td>{e.FDK}</td>
                         <td>{e.LoteCorrelativo}</td>
+                        <td>
+                        <tr>
                         <td>{e.SalidaC}</td>
                         <td>{e.SalidaP}</td>
+                        </tr>
+                        </td>
+                        <td>
+                        <tr>
                         <td>{e.ReajusC}</td>
                         <td>{e.ReajusP}</td>
+                        </tr>
+                        </td>
+                        <td>
+                        <tr>
                         <td>{e.SaldoC}</td>
                         <td>{e.SaldoP}</td>
+                        </tr>
+                        </td>
                         <td>{e.FechaReq}</td>
                     </tr>
                 )}
             </tbody>
         </Table>
+        </div>
         </div>
     );
 }
