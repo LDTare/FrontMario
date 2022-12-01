@@ -19,7 +19,7 @@ const PedidoList = () =>{
     const [isVisible, setIsVisible] = useState(false);
 
     const dateSolicitud = (pedidos) => {
-        return moment(pedidos.fechaSolicitud).format("L");
+        return moment(pedidos.fechaSolicitud).format("DD/MM/YYYY");
     }
     const statusBodyTemplate = (pedidos) => {
         return <span className={`${pedidos.estado ? "activo" : "inactivo"}`}>{pedidos.estado ? " Activo " : " Inactivo "}</span>;

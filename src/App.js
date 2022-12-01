@@ -180,7 +180,7 @@ const App = () => {
               isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Kardex")
               }
               >
-              <Kardexs />
+              < ReporteRequisicion/>
               </ProtectedRoute>
             }
           />
@@ -199,15 +199,6 @@ const App = () => {
               }
               >
               <DRequisicion />
-              </ProtectedRoute>
-            }
-          />
-          <Route  path="/requisicionreporte/:idR"     element={
-              <ProtectedRoute 
-              isAllowed={!!currentUser && (currentUser.rol === "Administrador" || currentUser.rol === "Despachador" || currentUser.rol === "Usuario")
-              }
-              >
-              <ReporteRequisicion />
               </ProtectedRoute>
             }
           />
