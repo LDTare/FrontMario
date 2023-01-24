@@ -23,13 +23,13 @@ const LoteList = () =>{
 
     const navigate = useNavigate();
     const dateIngreso = (lotes) => {
-        return moment(lotes.fechaIngreso).format("DD/MM/YYYY");
+        return moment(lotes.fechaIngreso).format("YYYY/MM/DD");
     }
     const dateCaducidad = (lotes) => {
-        return moment(lotes.fechaCad).format("DD/MM/YYYY");
+        return moment(lotes.fechaCad).format("YYYY/MM/DD");
     }
     const datePrefConsumo = (lotes) => {
-        return moment(lotes.fechaConPref).format("DD/MM/YYYY");
+        return moment(lotes.fechaConPref).format("YYYY/MM/DD");
     }
     const statusBodyTemplate = (lotes) => {
         if(lotes.estado==="Ingreso")
