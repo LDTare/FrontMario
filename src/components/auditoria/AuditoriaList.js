@@ -1,4 +1,4 @@
-import React, {useContext/*, useState*/} from "react";
+import React, {useContext} from "react";
 import { AuditoriaContext } from "../../context/AuditoriaContext";
 import { Panel } from "primereact/panel";
 import { DataTable } from "primereact/datatable";
@@ -6,7 +6,6 @@ import {Column} from 'primereact/column';
 import moment from "moment";
 import { Button } from "primereact/button";
 import logo from "../../images/fondo2.jpg";
-//import {Calendar} from 'primereact/calendar';
 
 
 const AuditoriaList = () =>{
@@ -18,11 +17,6 @@ const AuditoriaList = () =>{
     const dateInicio = (auditorias) => {
         return moment(auditorias.fechaIngreso).format("DD/MM/YYYY");
     };
-    /*const fechasInicio ={
-        fechaI:"",
-        fechaF:""
-    };
-    const [fechas, setFechas] = useState(fechasInicio);*/
 
     const cols = [
         { field: "no", header: "No." },
@@ -44,6 +38,12 @@ const AuditoriaList = () =>{
     }));
 
     const exportPDF = () => {
+        for (let i = 0; i < auditorias.length; i++) {
+            const fechaI = moment(auditorias[i].fechaIngreso).format("DD/MM/YYYY");
+            const fechaC = moment(auditorias[i].fechaCad).format("DD/MM/YYYY");
+            auditorias[i].fechaIngreso = fechaI;
+            auditorias[i].fechaCad = fechaC;
+        }
         import("jspdf").then((jsPDF) => {
             let today = new Date();
             let now = new Date(today.toLocaleDateString('en-US'));
@@ -62,7 +62,7 @@ const AuditoriaList = () =>{
                 doc.text("Fecha: "+day+" / "+months+" / "+year, 240,20);
                 doc.setFontSize(16);
                 doc.setFont("Helvetica", "bold");
-                doc.text("Reporte de auditoría", 120,32);
+                doc.text("Reporte de auditoria", 120,32);
                 const img1 = new Image();
                 img1.src = logo;
                 doc.addImage(img1, 'JPEG', 128, 4, 40, 20);
@@ -84,39 +84,6 @@ const AuditoriaList = () =>{
         </div>
     );
 
-    /*const updateField = (data, field) =>{
-        setFechas({
-            ...fechas,
-            [field]:data
-        })
-    };
-
-    const mostrar =()=> {
-        console.log(fechas.fechaI);
-        console.log(fechas.fechaF);
-    }
-
-    const renderHeader1 = () => {
-        return (
-            <div className="flex justify-content-between">
-                <span className="p-input-icon-left">
-                    <i className="pi pi-search" />
-                    
-                    <Calendar placeholder="Fecha inicio"
-                        value={fechas.fechaI && new Date(fechas.fechaI + " ")}
-                        onChange={(e) => updateField( e.target.value.toISOString().substring(0, 10), "fechaI")}
-                        dateFormat="dd/mm/yy"/>
-                    
-                    <Calendar placeholder="Fecha final"
-                        value={fechas.fechaF && new Date(fechas.fechaF + " ")}
-                        onChange={(e) => updateField( e.target.value.toISOString().substring(0, 10), "fechaF")}
-                        dateFormat="dd/mm/yy"/>
-                </span>
-                <Button type="button" icon="pi pi-filter-slash" label="Buscar" className="p-button-outlined" onClick={mostrar}/>
-            </div>
-        )
-    }
-    const header1 = renderHeader1();*/
     return(
         <div>
         <Panel
@@ -129,7 +96,6 @@ const AuditoriaList = () =>{
                 responsiveLayout="scroll"
                 selectionMode="single"
                 dataKey="id"
-                //header={header1}
                 emptyMessage="No se encontraron datos."
                 >
                 <Column field="no" header="No." sortable/>

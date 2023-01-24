@@ -9,40 +9,41 @@ import { Button } from "primereact/button";
 import logo from "../../images/fondo2.jpg";
 
 const ReporteRequisicionList = () => {
+    const { idR } = useParams();
+
     const { erequisicions, derequisicions } = useContext(ERequisicionContext);
 
     const datefecha = (erequisicions) => {
         return moment(erequisicions.fecha).format("DD/MM/YYYY");
     }
+    const statusAprovado = (requisiciones) => {
+        return requisiciones.aprobado ? " Si " : " No ";
+    }
 
-    const { idR } = useParams();
+    const requisicion = erequisicions.filter((q) => q.id === parseInt(idR));
+
+    const requisicionDatos = {
+        solicitante: requisicion.map((e) => e.Solicitante),
+        servicio: requisicion.map((e) => e.Servicio),
+        fecha: moment(requisicion.map((e) => e.fecha)).format("DD/MM/YYYY"),
+        categoria: requisicion.map((e) => e.categoria),
+        aprobado: requisicion.map((e) => e.aprobado),
+    }
 
     const cols = [
         { field: "Producto", header: "Producto" },
         { field: "Lote", header: "No. Lote" },
         { field: "descripcion", header: "Descripción" },
-        { field: "cantidad", header: "Cantidad" },
+        { field: "cantidad", header: "Cantidad pedida" },
         { field: "cantidaDespachada", header: "Cantidad despachada" },
         { field: "precioUnitario", header: "Precio unitario" },
         { field: "precioTotal", header: "Precio total" },
-    ];
-    const cols1 = [
-        { field: "Solicitante", header: "Solicitante" },
-        { field: "Servicio", header: "Servicio" },
-        { field: "fecha", header: "Fecha" },
-        { field: "aprobado", header: "Aprobación" },
     ];
 
     const exportColumns = cols.map((col) => ({
         title: col.header,
         dataKey: col.field,
     }));
-
-    const exportColumns2 = cols1.map((col1) => ({
-        title: col1.header,
-        dataKey: col1.field,
-    }));
-
 
     const exportPDF = () => {
         import("jspdf").then((jsPDF) => {
@@ -52,23 +53,29 @@ const ReporteRequisicionList = () => {
             months = now.getMonth()+1;
             day= now.getDate();
             year = now.getFullYear();
-            console.log(day);
-            console.log(year);
             import("jspdf-autotable").then(() => {
-                const doc = new jsPDF.default('l', 'mm', 'a4');
+                const doc = new jsPDF.default('h', 'mm', 'a4');
                 doc.setFontSize(12);
                 doc.setFont("Helvetica", "normal");
-                doc.text("Hospital Nacional", 20,15);
-                doc.text("de Retalhuleu", 20,20);
-                doc.text("Fecha: "+day+" / "+months+" / "+year, 240,20);
+                doc.text("Hospital Nacional", 10,10);
+                doc.text("de Retalhuleu Tel.: 7932-8282", 10,15);
+                doc.text("Farmacia interna", 10,20);
+                doc.text("Fecha: "+day+"/ "+months+"/ "+year, 160,10);
                 doc.setFontSize(16);
                 doc.setFont("Helvetica", "bold");
-                doc.text("Reporte de Requisición", 120,32);
+                doc.text("Requisición de "+ requisicionDatos.categoria, 60,32);
                 const img1 = new Image();
                 img1.src = logo;
-                doc.addImage(img1, 'JPEG', 128, 4, 40, 20);
-                doc.autoTable(exportColumns2 , erequisicions.filter((q) => q.id === parseInt(idR)), {margin:{top: 45}});
-                doc.autoTable(exportColumns, derequisicions.filter((p) => p.Requisicion === parseInt(idR)), {margin:{top: 35}});
+                doc.addImage(img1, 'JPEG', 85, 4, 40, 20);
+                doc.setFontSize(11);
+                doc.setFont("Helvetica", "normal");
+                doc.text("Solicitante: "+ requisicionDatos.solicitante, 15,40);
+                doc.text("Servicio: "+ requisicionDatos.servicio, 120,40);
+                doc.text("Firma / Encargado, Jefe: ________________________", 15,48);
+                doc.text("Fecha: "+ requisicionDatos.fecha, 120,48);
+                doc.text("Firma de quién entrega en farmacia: ______________________________________________________", 15,57);
+                doc.text("Nombre, Firma y Sello / Jefe Depto. Solicitante: _____________________________________________", 15,65);
+                doc.autoTable(exportColumns, derequisicions.filter((p) => p.Requisicion === parseInt(idR)), {margin:{top: 70}});
                 doc.save("Requisicion.pdf");
             })
         })
@@ -92,10 +99,29 @@ const ReporteRequisicionList = () => {
             <Panel
                 header="Reporte Requisicion"
                 style={{ textAlign: "justify" }}
-            >HOSPITAL NACIONAL RETALHULEU TEL: 79328282</Panel>
+            >
+                Hospital Nacional de Retalhuleu TEL: 79328282
+            <br/>
+                Farmacia interna
+            <br/>
+            <div>
+                <h4><center><strong>Información de requisición</strong></center></h4>
+                <DataTable
+                    value={requisicion}
+                    responsiveLayout="scroll"
+                    selectionMode="single"
+                    dataKey="id"
+                >
+                    <Column field="Solicitante" header="Solicitante" />
+                    <Column field="Servicio" header="Servicio"  />
+                    <Column field="categoria" header="Categoría"  />
+                    <Column body={datefecha} header="Fecha"  />
+                    <Column body={statusAprovado} header="Aprobación"  />
+                </DataTable>
+            </div>
             <br/><br/>
             <div>
-                <h4><center><strong>Requisicion de productos</strong></center></h4>
+                <h4><center><strong>Requisición de productos</strong></center></h4>
                 <DataTable
                     value={derequisicions.filter((p) => p.Requisicion === parseInt(idR))}
                     responsiveLayout="scroll"
@@ -111,21 +137,7 @@ const ReporteRequisicionList = () => {
                     <Column field="precioTotal" header="Precio total" />
                 </DataTable>
             </div>
-            <br/><br/>
-            <div>
-                <h4><center><strong>Información de requisición</strong></center></h4>
-                <DataTable
-                    value={erequisicions.filter((q) => q.id === parseInt(idR))}
-                    responsiveLayout="scroll"
-                    selectionMode="single"
-                    dataKey="id"
-                >
-                    <Column field="Solicitante" header="Solicitante" />
-                    <Column field="Servicio" header="Servicio"  />
-                    <Column body={datefecha} header="Fecha"  />
-                    <Column field="aprobado" header="Aprobación"  />
-                </DataTable>
-            </div>
+            </Panel>
             <br/><br/>
             <div className="speeddial-linear-demo" style={{ position: 'relative', height: '100px' }}>
                 {header}
