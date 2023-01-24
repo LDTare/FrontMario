@@ -1,3 +1,4 @@
+import React, {useContext, useState, useEffect, useRef} from "react";
 import { LoteContext } from "../../context/LoteContext";
 import {Dialog} from "primereact/dialog";
 import { Button } from "primereact/button";
