@@ -1,4 +1,3 @@
-import React, {useContext, useState, useEffect, useRef} from "react";
 import { LoteContext } from "../../context/LoteContext";
 import {Dialog} from "primereact/dialog";
 import { Button } from "primereact/button";
@@ -63,8 +62,8 @@ const Form =(props) =>{
             if (!editLote) {
                 createLote(loteData);
             } else {
-                loteData.fechaCad = moment(loteData.fechaCad).format("YYYY/MM/DD");
-                loteData.fechaConPref = moment(loteData.fechaConPref).format("YYYY/MM/DD");
+                loteData.fechaCad = moment(loteData.fechaCad).format("YYYY-MM-DD");
+                loteData.fechaConPref = moment(loteData.fechaConPref).format("YYYY-MM-DD");
                 updateLote(loteData);
             }
             retornar();
