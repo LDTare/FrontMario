@@ -14,7 +14,7 @@ const Profile = () => {
       las 
       páginas del sistema.`
     } else if (currentUser.rol === "Despachador") {
-      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo.`
+      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo.`;
         < div className = "flex justify-content-center" >
           <div className="card">
             <h3>
