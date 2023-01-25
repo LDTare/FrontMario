@@ -4,42 +4,41 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
-
+  
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
   function bienvenida(currentUser) {
-    if (currentUser.rol === "Administrador") {
+    if(currentUser.rol === "Administrador"){
       return `Recuerda de que tienes acceso a todas
       las 
       páginas del sistema.`
-    } else if (currentUser.rol === "Despachador") {
-      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo.`;
-        < div className = "flex justify-content-center" >
-          <div className="card">
-            <h3>
-              ¡Bienvenido <strong>{currentUser.nombre}</strong>!
-            </h3>
-            <p>
-              Es un placer tenerte aquí {currentUser.rol}, tenemos mucho que hacer el dia de hoy.
-            </p>
-            <p>
-              {text}
-            </p>
-          </div>
-    </div >
-    }else if (currentUser.rol === "Kardex") {
-  return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo, o sea al Kardex.`
-} else if (currentUser.rol === "Usuario") {
-  return `Recuerda de que tienes acceso a todas las páginas para pedir un medicamento.`
-} else if (!currentUser) {
-  return null;
-}
+    }else if(currentUser.rol === "Despachador"){
+      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo.`
+    }else if(currentUser.rol === "Kardex"){
+      return `Recuerda de que tienes acceso a todas las páginas determinadas a tu cargo, o sea al Kardex.`
+    }else if(currentUser.rol === "Usuario"){
+      return `Recuerda de que tienes acceso a todas las páginas para pedir un medicamento.`
+    }else if(!currentUser){
+      return null;
+    }
   }
-const text = bienvenida(currentUser);
+  const text = bienvenida(currentUser);
 
-return (
-
+  return (
+    <div className="flex justify-content-center">
+      <div className="card">
+        <h3>
+        ¡Bienvenido <strong>{currentUser.nombre}</strong>!
+        </h3>
+      <p>
+        Es un placer tenerte aquí {currentUser.rol}, tenemos mucho que hacer el dia de hoy.
+      </p>
+      <p>
+        {text}
+      </p>
+      </div>
+    </div>
   );
 };
 
