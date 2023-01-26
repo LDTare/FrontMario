@@ -4,6 +4,7 @@ import { Panel } from "primereact/panel";
 import { DataTable } from "primereact/datatable";
 import { Column } from 'primereact/column';
 import FormUsuario from './UsuarioForm';
+import FormUsuarioEdit from "./UsuarioFormEdit";
 import { InputText} from "primereact/inputtext";
 import { Button} from 'primereact/button';
 import { FilterMatchMode} from 'primereact/api';
@@ -14,13 +15,14 @@ const UsuarioList = () =>{
 
     const [isVisible, setIsVisible] = useState(false);
 
+    const [isVisible2, setIsVisible2] = useState(false);
     const statusBodyTemplate = (usuarios) => {
         return <span className={`${usuarios.estado ? "activo" : "inactivo"}`}>{usuarios.estado ? " Activo " : " Inactivo "}</span>;
     }
 
     const saveUsuario = (id) => {
         findUsuario(id);
-        setIsVisible(true);
+        setIsVisible2(true);
     };
 
     const leftToolbarTemplate = () => {
@@ -95,6 +97,7 @@ const UsuarioList = () =>{
             </div>
         </Panel>
         <FormUsuario isVisible={isVisible} setIsVisible={setIsVisible}/>
+        <FormUsuarioEdit isVisible={isVisible2} setIsVisible={setIsVisible2}/>
         </div>
     );
 }
