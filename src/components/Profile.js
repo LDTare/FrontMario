@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Panel } from 'primereact/panel';
 import { Divider } from 'primereact/divider';
 import { Card } from 'primereact/card';
-import imagen6 from '../images/fondo6.jpg';
+import imagen6 from '../images/fondo6.jpeg';
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const header = (
