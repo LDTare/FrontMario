@@ -27,7 +27,7 @@ const VistaTable = () => {
         correlativo:pedido.map((e) => e.Correlativo),
         nombreUE: pedido.map((e) => e.NombreUE),
         solicitante: pedido.map((e) => e.Solicitante),
-        fecha: pedido.map((e) => e.Fecha),
+        fecha:  new Date(pedido.map((e) => e.Fecha)).toLocaleDateString(),
         telefono: pedido.map((e) => e.Telefono),
         JO: pedido.map((e) => e.JO),
         nombreS: pedido.map((e) => e.NombreS),
@@ -78,7 +78,7 @@ const VistaTable = () => {
                 doc.text("Correlativo sección de compras UE: "+ pedidoDatos.correlativo, 100,40);
                 doc.text("Nombre unidad ejecutora: "+ pedidoDatos.nombreUE, 20,45);
                 doc.text("Nombre unidad / departamento / sección solicitante: "+ pedidoDatos.solicitante, 20,50);
-                doc.text("Fecha de la solicitud: "+ moment(pedidoDatos.fecha).format("DD/MM/YYYY"), 20,55);
+                doc.text("Fecha de la solicitud: "+ pedidoDatos.fecha, 20,55);
                 doc.text("Teléfono / ext: "+ pedidoDatos.telefono, 100,55);
                 doc.autoTable(exportColumns, pedidoDetalle, {margin:{top: 60}});
                 doc.text("Justificación / Observación: "+ pedidoDatos.JO, 15,200);
@@ -90,7 +90,7 @@ const VistaTable = () => {
                 const nombreSoli = "  "+pedidoDatos.nombreS+"  ";
                 doc.text(nombreSoli, 25, distY+20);
                 const textWidth = doc.getTextWidth(nombreSoli);
-                doc.line(20, distY+21, 50 + textWidth, distY+21, 'F');
+                doc.line(20, distY+21, 30 + textWidth, distY+21, 'F');
                 doc.text("Nombre completo del",20, distY+25);
                 doc.text("servidor público",25, distY+28);
                 doc.text("_______________________", 80,distY+20);
@@ -130,7 +130,7 @@ const VistaTable = () => {
             <p>Nombre unidad ejecutora: __<u>{pedidoDatos.nombreUE}</u>____</p>
             <p>Nombre unidad/depto/sección solicitante: __<u>{pedidoDatos.solicitante}</u>____</p>
             <br/>
-            <p>Fecha de la solicitud: __<u>{moment(pedidoDatos.fecha).format("DD/MM/YYYY")}</u>____ &nbsp; &nbsp; &nbsp; Teléfono/ext: __<u>{pedidoDatos.telefono}</u>____</p>     
+            <p>Fecha de la solicitud: __<u>{pedidoDatos.fecha}</u>____ &nbsp; &nbsp; &nbsp; Teléfono/ext: __<u>{pedidoDatos.telefono}</u>____</p>     
             
             </div>
             <div>

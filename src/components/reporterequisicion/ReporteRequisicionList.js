@@ -25,7 +25,7 @@ const ReporteRequisicionList = () => {
     const requisicionDatos = {
         solicitante: requisicion.map((e) => e.Solicitante),
         servicio: requisicion.map((e) => e.Servicio),
-        fecha: moment(requisicion.map((e) => e.fecha)).format("DD/MM/YYYY"),
+        fecha: new Date( requisicion.map((e) => e.fecha)).toLocaleDateString(),
         categoria: requisicion.map((e) => e.categoria),
         aprobado: requisicion.map((e) => e.aprobado),
     }
@@ -40,10 +40,12 @@ const ReporteRequisicionList = () => {
         { field: "precioTotal", header: "Precio total" },
     ];
 
+    let rfecha = moment(requisicionDatos.fecha).format("DD/MM/YYYY");
     const exportColumns = cols.map((col) => ({
         title: col.header,
         dataKey: col.field,
     }));
+
 
     const exportPDF = () => {
         import("jspdf").then((jsPDF) => {
