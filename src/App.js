@@ -33,6 +33,7 @@ import Usuario from "./screens/UsuarioScreen";
 import Remitente from "./screens/RemitenteScreen";
 import EditUser from "./components/EditUser";
 import ReactFinalFormDemo from "./components/Register"; 
+import PasswordUser from "./components/PasswordChange";
 
 
 const App = () => {
@@ -75,6 +76,14 @@ const App = () => {
               <EditUser />
               </ProtectedRoute>
             }
+          />
+          <Route path="/pwdchange" element={
+            <ProtectedRoute
+            isAllowed={!!currentUser}
+            >
+              <PasswordUser/>
+            </ProtectedRoute>
+          }
           />
           <Route  path="/lote"     element={
               <ProtectedRoute 

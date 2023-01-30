@@ -61,10 +61,40 @@ const update = (
   });
 }
 
+const updatePerfil = (
+  id,
+  idRol, 
+  nombre, 
+  email, 
+  nroCelular, 
+  direccion, 
+  estado) => {
+  return axios.put(API_URL + `update/perfil/${id}`, {
+    idRol, 
+    nombre, 
+    email, 
+    nroCelular, 
+    direccion, 
+    estado,
+  });
+}
+
+const updatepdw = (
+  id, 
+  password,
+) => {
+  return axios.put(API_URL + `update/profile/password/${id}`, {
+    id,
+    password,
+  });
+}
+
 export default {
   login, 
   logout, 
   register,
   signout,
-  update
+  update,
+  updatePerfil,
+  updatepdw
 };

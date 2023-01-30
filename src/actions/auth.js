@@ -89,17 +89,41 @@ import {
     id,
     idRol, 
     nombre, 
-    email, 
-    password,
+    email,
     nroCelular, 
     direccion, 
     estado) => {
-      AuthService.update(  id,
+      AuthService.update(  
+        id,
         idRol, 
         nombre, 
-        email, 
-        password,
+        email,
         nroCelular, 
         direccion, 
         estado);
+  }
+
+  export const updateProfile = (  
+    id,
+    idRol, 
+    nombre, 
+    email,
+    nroCelular, 
+    direccion, 
+    estado) => {
+      AuthService.updatePerfil(  
+        id,
+        idRol, 
+        nombre, 
+        email, 
+        nroCelular, 
+        direccion, 
+        estado);
+  }
+
+  export const updatePassword = (
+    id,
+    password,
+  ) => {
+    AuthService.updatepdw(id, password);
   }

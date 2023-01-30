@@ -260,6 +260,13 @@ const Navigation = () => {
       }
     },
     {
+      label: "Editar contraseña",
+      icon: "pi pi-fw pi-user-edit",
+      command: () => {
+        window.location.href = '/pwdchange';
+      }
+    },
+    {
       label: "Soporte técnico",
       icon: "pi pi-fw pi-send",
       command: () => {
