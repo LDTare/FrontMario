@@ -40,25 +40,20 @@ const ActualizarUser = () => {
 
     const onSubmit = (data, form) => {
         setFormData(data);
-            const email = {
-                message: `Es un placer anunciarle que el 
-                dia de hoy se actualizo un usuario, 
-                con el email ${data.email}, para que observe
-                si el usuario necesita tener un rol.`
-            }
-            emailjs.send(ApiKey.SERVICE_ID, ApiKey.TEMPLATE_ID, email, ApiKey.USER_ID)
-            .then(() => {
-                console.log("Enviado con exito");
-            },() => {
-                console.log("Error");
-            });
-            updateProfile(currentUser.id, currentUser.idR, data.nombre, data.email, data.nroCelular, data.direccion, 1)
-            .then(() => {
-                
-            })
-            .catch(() => {
-            });
-        
+        const email = {
+            message: `Es un placer anunciarle que el 
+            dia de hoy se actualizo un usuario, 
+            con el email ${data.email}, para que observe
+            si el usuario necesita tener un rol.`
+        }
+        emailjs.send(ApiKey.SERVICE_ID, ApiKey.TEMPLATE_ID, email, ApiKey.USER_ID)
+        .then(() => {
+            console.log("Enviado con exito");
+        },() => {
+            console.log("Error");
+        });
+        updateProfile(currentUser.id, currentUser.idR, data.nombre, data.email, data.nroCelular, data.direccion, 1)
+        setShowMessage(true);
     };
 
     const isFormFieldValid = (meta) => !!(meta.touched && meta.error);
@@ -76,7 +71,7 @@ const ActualizarUser = () => {
                     <i className="pi pi-check-circle" style={{ fontSize: '5rem', color: 'var(--green-500)' }}></i>
                     <h5>¡Actualización hecha!</h5>
                     <p style={{ lineHeight: 1.5, textIndent: '1rem' }}>
-                        ¿Que tal señor@ <b>{formData.name}</b>? ; Ya se hicieron los cambios.
+                        Ya se hicieron los cambios, puede cerrar sesión y volver a entrar para ver los cambios.
                     </p>
                 </div>
             </Dialog>
